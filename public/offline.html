@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>You are offline</title>
+
+    <!-- Inline the page's stylesheet. -->
+    <style>
+      html, body {
+        font-family: helvetica, arial, sans-serif;
+        margin: 2em;
+        background-color: #eceff2;
+      }
+
+      .container {
+        place-items: center;
+        height: 100vh;
+        display: grid;
+      }
+
+      .error-container {
+        color: rgb(107 114 128);
+      }
+
+      .error-icon {
+        fill: #f87171;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: inline-block;
+        margin-right: 0.75rem;
+        vertical-align: middle;
+      }
+
+      .button-container {
+        text-align: center;
+        padding-top: 1rem;
+      }
+
+      .button {
+        font-size: 18px;
+        border-radius: 5px;
+        border: none;
+        color: white;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        background-color: #007abc;
+        cursor: pointer;
+      }
+
+      .button:hover {
+        background-color: #005a8a;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <span class="error-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="error-icon"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+        <span>You are offline. Check your connectivity.</span>
+        <div class="button-container">
+          <button type="button" class="button"><strong>Retry</strong></button>
+        </div>
+
+      </span>
+
+    </div>
+
+
+    <!-- Inline the page's JavaScript file. -->
+    <script>
+      // Manual reload feature.
+      document.querySelector("button").addEventListener("click", () => {
+        window.location.reload();
+      });
+
+      // Listen to changes in the network state, reload when online.
+      // This handles the case when the device is completely offline.
+      window.addEventListener('online', () => {
+        window.location.reload();
+      });
+
+      // Check if the server is responding and reload the page if it is.
+      // This handles the case when the device is online, but the server
+      // is offline or misbehaving.
+      async function checkNetworkAndReload() {
+        try {
+          const response = await fetch('.');
+          // Verify we get a valid response from the server
+          if (response.status >= 200 && response.status < 500) {
+            window.location.reload();
+            return;
+          }
+        } catch {
+          // Unable to connect to the server, ignore.
+        }
+        window.setTimeout(checkNetworkAndReload, 2500);
+      }
+
+      checkNetworkAndReload();
+    </script>
+  </body>
+</html>
