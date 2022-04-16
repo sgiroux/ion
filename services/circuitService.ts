@@ -2,7 +2,7 @@
 import axios from "axios";
 import moment from "moment";
 import { CircuitConfig } from "../types/circuitConfig";
-import { CircuitDatapoint } from "../types/circuitMetrics";
+import { CircuitDatapoint } from "../types/circuitDatapoint";
 import { CircuitSummary } from "../types/circuitSummary";
 import { DatePeriod } from "../types/datePeriod";
 import configService from "./configService";
@@ -25,6 +25,10 @@ class CircuitService {
       break;
       case DatePeriod.LAST_THIRTY_DAYS:
         startDate = moment().subtract(30, 'days')
+        endDate = moment().endOf('day')
+      break;
+      case DatePeriod.LAST_SIXTY_DAYS:
+        startDate = moment().subtract(60, 'days')
         endDate = moment().endOf('day')
       break;
       case DatePeriod.LAST_NINETY_DAYS:

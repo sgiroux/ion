@@ -9,6 +9,8 @@ type IndexPageProps = {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
+    // Since this is a server side render, pull down the server config using
+    // localhost
     const res = await fetch("http://localhost:3000/api/config");
     const data: ApplicationConfig = await res.json();
     return {

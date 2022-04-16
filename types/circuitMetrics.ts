@@ -1,3 +1,5 @@
+import { CircuitDatapoint } from "./circuitDatapoint";
+
 export type CircuitMetrics = {
   datapoints: Array<CircuitDatapoint>,
   totalConsumption: number,
@@ -5,7 +7,3 @@ export type CircuitMetrics = {
 }
 
 
-export type CircuitDatapoint = {
-  timestamp: string,
-  value: number
-}

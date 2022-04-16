@@ -1,0 +1,41 @@
+{
+  "costPerKWh": 0.11,
+  "circuits": [
+    {
+      "id": 1,
+      "url": "http://192.168.12.96:8088",
+      "username": "",
+      "password": "",
+      "db": "iotawatt",
+      "name": "Total",
+      "metric": "total_Wh"
+    },
+    {
+      "id": 2,
+      "url": "http://192.168.12.96:8088",
+      "username": "",
+      "password": "",
+      "db": "iotawatt",
+      "name": "Tesla",
+      "metric": "ev_charger_Wh"
+    },
+    {
+      "id": 3,
+      "url": "http://192.168.12.96:8088",
+      "username": "",
+      "password": "",
+      "db": "iotawatt",
+      "name": "House",
+      "metric": "house_Wh"
+    },
+    {
+      "id": 4,
+      "url": "http://192.168.12.96:8088",
+      "username": "",
+      "password": "",
+      "db": "iotawatt",
+      "name": "HVAC",
+      "metric": "hvac_Wh"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import { Area, AreaChart, ResponsiveContainer } from "recharts";
 import { CircuitsHookResponse, useCircuits } from "../hooks/useCircuits";
 import { DatePeriodStore } from "../stores/datePeriodStore";
 import { Circuit } from "../types/circuit";
-import { CircuitDatapoint } from "../types/circuitMetrics";
+import { CircuitDatapoint } from "../types/circuitDatapoint";
 import { formatNumber } from "../utils/numberUtil";
 
 type CircuitOverviewProps = {
@@ -53,7 +53,7 @@ const CircuitOverview: React.FC<CircuitOverviewProps> = ({ circuit }) => {
         <ResponsiveContainer
           width="100%"
           height="100%"
-          className={isLoading ? "blur-[12px] animate-pulse" : "opacity-20"}
+          className={isLoading ? "blur-[12px] opacity-20" : "opacity-20"}
         >
           <AreaChart
             width={500}
@@ -67,16 +67,17 @@ const CircuitOverview: React.FC<CircuitOverviewProps> = ({ circuit }) => {
             }}
           >
             <defs>
-              <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#007abc" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#007abc" stopOpacity={0} />
+              <linearGradient id="colorPz" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="red" stopOpacity={1} />
+                <stop offset="40%" stopColor="#007abc" stopOpacity={1} />
+                <stop offset="100%" stopColor="#007abc" stopOpacity={0.1} />
               </linearGradient>
             </defs>
             <Area
               type="monotone"
               dataKey="value"
               stroke="#007abc"
-              fill="url(#colorPv)"
+              fill="url(#colorPz)"
             />
           </AreaChart>
         </ResponsiveContainer>

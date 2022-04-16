@@ -28,10 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           crossOrigin="use-credentials"
         />
         <meta name="apple-mobile-web-app-title" content="ion" />
-        <meta
-          name="description"
-          content="Request and Media Discovery Application"
-        />
+        <meta name="description" content="Energy Monitor" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="application-name" content="ion" />
         <link rel="apple-touch-icon" sizes="192x192" href="/icon-192x192.png" />

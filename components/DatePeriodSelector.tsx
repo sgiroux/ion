@@ -26,14 +26,30 @@ export default function DatePeriodSelector() {
     });
   };
 
+  const calculateDatePeriodText = (datePeriod: DatePeriod): string => {
+    switch (datePeriod) {
+      case DatePeriod.LAST_SEVEN_DAYS:
+        return "Last 7 Days";
+      case DatePeriod.LAST_FOURTEEN_DAYS:
+        return "Last 14 Days";
+      case DatePeriod.LAST_THIRTY_DAYS:
+        return "Last 30 Days";
+      case DatePeriod.LAST_SIXTY_DAYS:
+        return "Last 60 Days";
+      case DatePeriod.LAST_NINETY_DAYS:
+        return "Last 90 Days";
+    }
+  };
+
   return (
     <div className="text-right">
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-10 hover:bg-opacity-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-            <CalendarIcon className="w-5 h-5 text-white cursor-pointer" />
+            <CalendarIcon className="w-5 h-5 mr-1 text-white cursor-pointer" />
+            {calculateDatePeriodText(datePeriod)}
             <ChevronDownIcon
-              className="w-5 h-5 ml-2 -mr-1 text-white hover:text-white"
+              className="w-5 h-5 ml-1 -mr-1 text-white hover:text-white"
               aria-hidden="true"
             />
           </Menu.Button>
@@ -85,6 +101,19 @@ export default function DatePeriodSelector() {
                     )}
                   >
                     Last 30 Days
+                  </button>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <button
+                    onClick={() => handleClick(DatePeriod.LAST_SIXTY_DAYS)}
+                    className={menuItemButtonClasses(
+                      active,
+                      datePeriod === DatePeriod.LAST_SIXTY_DAYS
+                    )}
+                  >
+                    Last 60 Days
                   </button>
                 )}
               </Menu.Item>
